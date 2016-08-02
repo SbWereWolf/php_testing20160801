@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+
+    <script type="text/javascript" src="js/jquery-1.8.2.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $(".buttons input").click(function(){
+
+                const c_first_index = 0;
+                const c_undefined = "undefined";
+                const c_element_type = "input" ;
+                const c_element_value = "value";
+
+                var all_inputs = $(this).parent().find(c_element_type);
+
+                const all_inputs_length = all_inputs.length;
+
+                const last_input_value = $(all_inputs[all_inputs_length-1]).prop(c_element_value);
+                var next_input_value ;
+                var prev_input_value = c_undefined;
+
+                for (let i = 0 ;  all_inputs_length > i  ; i++ ) {
+
+                    next_input_value = $(all_inputs[i]).prop(c_element_value);
+                    $(all_inputs[i]).val(prev_input_value);
+                    prev_input_value = next_input_value;
+
+                }
+
+                $(all_inputs[c_first_index]).val(last_input_value);
+
+            });
+
+        });
+    </script>
+
+    <style type="text/css">
+        .buttons {
+            width: 480px;
+            border-bottom: solid 1px #c4c4c4;
+            border-top: solid 1px #c4c4c4;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="buttons" >
+    <input type="button" value="1"><br />
+    <input type="button" value="2"><br />
+    <input type="button" value="3"><br />
+</div>
+
+</body>
+</html>
